@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class LevelManager : MonoBehaviour
 {
+   
    
     [Header("Score")]
     [SerializeField] private Text scoreText;
@@ -31,7 +33,7 @@ public class LevelManager : MonoBehaviour
     public void ChangeLifesCount()
     {
         _lifesCount -= 1;
-        UIManager.Instance.LifeDown(_lifesCount);
+       // UIManager.Instance.LifeDown(_lifesCount);
         if (_lifesCount > 0) return;
         //UIManager.Instance.ActivateLoseGamePanel();
         GetFinalScore();
@@ -49,7 +51,7 @@ public class LevelManager : MonoBehaviour
     {
         if (_lifesCount >= 3) return;
         _lifesCount++;
-        UIManager.Instance.ResetLifes();
+        //UIManager.Instance.ResetLifes();
     }
     public void GravityChange(float delay,float value)
     {

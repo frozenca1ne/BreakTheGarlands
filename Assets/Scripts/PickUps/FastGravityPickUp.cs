@@ -1,19 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FastGravityPickUp : MonoBehaviour
+namespace PickUps
 {
-    [SerializeField] float scaleDelay = 10f;
-    [SerializeField] float changedGravity = -5.81f;
-    
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class FastGravityPickUp : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
+        [SerializeField] float scaleDelay = 10f;
+        [SerializeField] float changedGravity = -5.81f;
+    
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            LevelManager.Instance.GravityChange(scaleDelay, changedGravity);
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                // LevelManager.Instance.GravityChange(scaleDelay, changedGravity);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
-    }
    
+    }
 }

@@ -8,6 +8,9 @@
           <e p="AudioPlayer.cs" t="Include" />
           <e p="Enemy.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Interfaces" t="Include">
+            <e p="ILifeAdd.cs" t="Include" />
+          </e>
           <e p="LevelManager.cs" t="Include" />
           <e p="PickUps" t="Include">
             <e p="AddLifePickUp.cs" t="Include" />
@@ -17,6 +20,7 @@
           <e p="SceneLoader.cs" t="Include" />
           <e p="UI" t="Include">
             <e p="GameUiView.cs" t="Include" />
+            <e p="LifesController.cs" t="Include" />
             <e p="MainMenuView.cs" t="Include" />
             <e p="SettingsPanelView.cs" t="Include" />
           </e>

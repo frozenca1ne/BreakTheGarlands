@@ -1,16 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AddLifePickUp : MonoBehaviour
+namespace PickUps
 {
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class AddLifePickUp : MonoBehaviour
     {
-        if(collision.gameObject.CompareTag("Player"))
+
+        [SerializeField] private int lifePerPickUp = 1;
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            LevelManager.Instance.AddLife();
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+
+        
     }
 }
