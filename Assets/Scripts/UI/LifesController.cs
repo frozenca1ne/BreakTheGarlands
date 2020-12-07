@@ -8,20 +8,25 @@ namespace UI
     {
         [SerializeField] private Image[] lifes;
 
-        private void RemoveLife(int index)
+        private void OnEnable()
         {
-            lifes[index].gameObject.SetActive(false);
+            LevelManager.OnLifeRemove += RemoveLife;
         }
 
-        private void ResetLifes()
+        private void OnDisable()
         {
-            foreach (var life in lifes )
-            {
-                life.gameObject.SetActive(true);
-            }
+            LevelManager.OnLifeRemove -= RemoveLife;
         }
+
+        private void RemoveLife(int index)
+        {
+            Debug.Log("h");
+            lifes[index].gameObject.SetActive(false);
+        }
+        
         public void AddLife(int index)
         {
+            
             lifes[index].gameObject.SetActive(true);
         }
     }

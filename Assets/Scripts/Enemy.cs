@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,16 +8,10 @@ public class Enemy : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Fall"))
-        {
-           
-        }
-        else
+        if(collision.gameObject.CompareTag("Player"))
         {
             
         }
-        
         Destroy(gameObject);
     }
-   
 }

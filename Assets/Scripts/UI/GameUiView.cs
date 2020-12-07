@@ -7,14 +7,19 @@ namespace UI
     public class GameUiView : MonoBehaviour
     {
         [SerializeField] private Text scoreText;
-        [SerializeField] private Image[] lives;
         [SerializeField] private Button settingButton;
         [SerializeField] private CanvasGroup settingsPanel;
         [SerializeField] private CanvasGroup loseGamePanel;
 
         private void OnEnable()
         {
+            LevelManager.OnGameLose += OpenLosePanel;
             settingButton.onClick.AddListener(OpenSettingsPanel);
+        }
+
+        private void OnDisable()
+        {
+            LevelManager.OnGameLose -= OpenLosePanel;
         }
 
         private void OpenSettingsPanel()
@@ -23,5 +28,14 @@ namespace UI
             Time.timeScale = 0;
         }
 
+        private void OpenLosePanel(int i)
+        {
+            loseGamePanel.gameObject.SetActive(true);
+        }
+
+        private void SetScore(int score)
+        {
+            scoreText.text = $"SCORE : {score}";
+        }
     }
 }
