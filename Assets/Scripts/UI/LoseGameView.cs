@@ -1,39 +1,43 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-public class LoseGameView : MonoBehaviour
+using UnityEngine.UI;
+
+namespace UI
 {
-    [SerializeField] private Text finalScoreText;
-    [SerializeField] private Button mainMenuButton;
-    [SerializeField] private Button restartButton;
-
-    private void OnEnable()
+    public class LoseGameView : MonoBehaviour
     {
-        LevelManager.OnGameLose += GetFinalScore;
+        [SerializeField] private Text finalScoreText;
+        [SerializeField] private Button mainMenuButton;
+        [SerializeField] private Button restartButton;
+
+        private void OnEnable()
+        {
+            LevelManager.OnGameLose += GetFinalScore;
         
-        mainMenuButton.onClick.AddListener(LoadMainMenu);
-        restartButton.onClick.AddListener(ResetGame);
-    }
+            mainMenuButton.onClick.AddListener(LoadMainMenu);
+            restartButton.onClick.AddListener(ResetGame);
+        }
 
-    private void OnDisable()
-    {
-        LevelManager.OnGameLose -= GetFinalScore;
-    }
+        private void OnDisable()
+        {
+            LevelManager.OnGameLose -= GetFinalScore;
+        }
 
-    private void GetFinalScore(int score)
-    {
-        finalScoreText.text = $"SCORE : {score}";
-    }
+        private void GetFinalScore(int score)
+        {
+            finalScoreText.text = $"SCORE : {score}";
+        }
 
-    private void LoadMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
+        private void LoadMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
 
-    private void ResetGame()
-    {
-        var index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index);
+        private void ResetGame()
+        {
+            var index = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(index);
+            Time.timeScale = 1;
+        }
     }
 }

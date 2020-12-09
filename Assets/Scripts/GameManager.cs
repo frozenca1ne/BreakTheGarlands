@@ -1,28 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     [Header("EnemySettings")]
-    [SerializeField] GameObject[] enemys;
+    [SerializeField]
+    private GameObject[] enemys;
 
     [Header("CreateSettings")]
-    [SerializeField] Transform[] createPoints;
-    [SerializeField] float createTime = 1f;
-    [SerializeField] float changeCreateTimeRate = 0.9f;
-    [SerializeField] float changeCreateTimeDelay = 10f;
+    [SerializeField] private Transform[] createPoints;
+    [SerializeField] private float createTime = 1f;
+    [SerializeField] private float changeCreateTimeRate = 0.9f;
+    [SerializeField] private float changeCreateTimeDelay = 10f;
 
     [Header("PickUp")]
-    [SerializeField] GameObject[] pickUps;
-    [SerializeField] int pickUpCoeff = 3;
-    [SerializeField] float pickUpCreateTime = 5f;
+    [SerializeField] private GameObject[] pickUps;
+    [SerializeField] private int pickUpCoeff = 3;
+    [SerializeField] private float pickUpCreateTime = 5f;
 
-    private bool isAlive;
+    private bool _isAlive;
 
     private void Start()
     {
-        isAlive = true;
+        _isAlive = true;
         StartCoroutine(nameof(CreateEnemys));
         StartCoroutine(ChangeCreateTime(changeCreateTimeRate, changeCreateTimeDelay));
         StartCoroutine(CreatePickUp(pickUpCreateTime));
@@ -30,10 +30,10 @@ public class GameManager : MonoBehaviour
    
     private IEnumerator CreateEnemys()
     {
-        while(isAlive)
+        while(_isAlive)
         {
-            int enemyIndex = Random.Range(0, enemys.Length - 1);
-            int positionIndex = Random.Range(0, createPoints.Length - 1);
+            var enemyIndex = Random.Range(0, enemys.Length - 1);
+            var positionIndex = Random.Range(0, createPoints.Length - 1);
             yield return new WaitForSeconds(createTime);
             Instantiate(enemys[enemyIndex], createPoints[positionIndex].transform.position, Quaternion.identity);
 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator ChangeCreateTime(float rate,float delay)
     {
         yield return new WaitForSeconds(delay); 
-        while(isAlive)
+        while(_isAlive)
         {
             createTime *= rate;
             yield return new WaitForSeconds(delay);
@@ -50,11 +50,11 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator CreatePickUp(float rate)
     {        
-        while (isAlive)
+        while (_isAlive)
         {
-            int createChance = Random.Range(0, 10);
-            int pickUpIndex = Random.Range(0, pickUps.Length - 1);
-            int positionIndex = Random.Range(0, createPoints.Length - 1);
+            var createChance = Random.Range(0, 10);
+            var pickUpIndex = Random.Range(0, pickUps.Length - 1);
+            var positionIndex = Random.Range(0, createPoints.Length - 1);
             yield return new WaitForSeconds(rate);
             if(createChance<pickUpCoeff)
             {

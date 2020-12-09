@@ -1,10 +1,9 @@
-﻿using Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class LifesController : MonoBehaviour,ILifeAdd
+    public class LifesController : MonoBehaviour
     {
         [SerializeField] private Image[] lifes;
 
@@ -20,7 +19,6 @@ namespace UI
 
         private void RemoveLife(int index)
         {
-            Debug.Log("h");
             lifes[index].gameObject.SetActive(false);
         }
         

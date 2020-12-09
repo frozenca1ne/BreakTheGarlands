@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Fall
   - Enemy
+  - LifeAdd
+  - FastGravity
+  - SlowGravity
   layers:
   - Default
   - TransparentFX

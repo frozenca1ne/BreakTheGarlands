@@ -24,6 +24,7 @@ namespace UI
         private void LoadGameScene()
         {
             SceneManager.LoadScene(1);
+            Time.timeScale = 1;
         }
     
     }
